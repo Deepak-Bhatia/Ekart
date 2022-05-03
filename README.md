@@ -5,6 +5,9 @@ Its an web application developed in .Net Core MVC architecture.
 ## Description
 
 Application showcase dynamic navigation bar using SQL database and displaying products and their detail page.
+Application uses a Tbl_menu Table in Database to configure dynamic navigation buttons. Table uses Parent_Id column to create sub category.
+Controller and Action method names can be configured in Database for configurable navigation.
+Application uses tbl_product, tbl_productCategory and tbl_productCompany to store product details.
 
 ## Getting Started
 
@@ -12,21 +15,19 @@ To get started with the application you need .NET core and SQL.
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+* ASP.Net core
+* SQL Server
+* ADO.Net
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* Download the code 
+* Execute DB script to create tables and insert dummy data
+* Configure connection string in app.settings
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+* Run the application
 
 ## Help
 
@@ -37,16 +38,10 @@ command to run if program contains helper info
 
 ## Authors
 
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+Deepak Bhatia
 
 ## Version History
 
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
 * 0.1
     * Initial Release
 
@@ -57,8 +52,5 @@ This project is licensed under the [NAME HERE] License - see the LICENSE.md file
 ## Acknowledgments
 
 Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+<!-- * [awesome-readme](https://github.com/matiassingers/awesome-readme)
+* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) -->
