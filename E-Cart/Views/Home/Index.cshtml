@@ -1,0 +1,107 @@
+﻿@model IEnumerable<E_Cart.Models.ProductModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+             $(".productImage").dblclick(function (event) {
+                 var productId = $(event.currentTarget).attr('id')
+                 debugger;
+                $('#ModalPopUp-'+ productId).modal('show');
+            })
+    });
+</script>
+
+<div class="row">
+      <h4>Sort By : </h4>
+      <ul class="list-group list-group-horizontal-xl">
+      <li class="list-group-item"> <a href="@Url.Action("Index", "Home",new { sortId = 1 })">Popularity</a>   </li>
+      <li class="list-group-item"> <a href="@Url.Action("Index", "Home",new { sortId = 2 })">Price -- Low to High</a></li>
+      <li class="list-group-item"> <a href="@Url.Action("Index", "Home",new { sortId = 3 })">Price -- High to Low</a></li>
+      <li class="list-group-item"> <a href="@Url.Action("Index", "Home",new { sortId = 4 })">Company</a></li>
+
+</ul>
+</div>
+
+<div class="row">
+    @foreach (var m in Model)
+    {
+
+        <div class="col-md-4">
+            <div class="row">
+                <h4><span id="mobilename" style="color:darkred">@m.CategoryName : @m.Name</span></h4>
+             </div>
+             <img  id="@m.ProductId" class="a.photo productImage" src="~/Images/@m.CategoryName/@m.Url" style="overflow: hidden; position: relative; width:200px; height:200px; cursor:pointer" />
+             <p>
+                  <h5><span> @m.Price Rs</span></h5>
+             </p>
+            <p></p>
+            <p><a class="btn btn-default" href="@Url.Action("ProductDetail", "Home",new { productId = m.ProductId })" >View More &raquo;</a>
+            </p>
+        </div>
+
+
+
+
+        <div class="modal fade" id="ModalPopUp-@m.ProductId" role="dialog">
+            <div class="modal-dialog err-pop" style="">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    Product Details
+
+                    <button id="DivClose" type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body" style="text-align:left;">
+                    <h3><span id="mobilename" style="color:black"><b>Product Type:</b></span></h3>
+                            <h6><span id="mobilename" style="color:black">@m.CategoryName</span></h6>
+
+                            <h3><span id="mobilename" style="color:black"><b>Name:</b></span></h3>
+                            <h6><span id="mobilename" style="color:black">@m.Name</span></h6>
+                    
+                            <h3><span id="mobilename" style="color:black"><b>Description</b></span></h3>
+                            <h4><span id="mobilename" style="color:black">@m.Description</span></h4>
+
+                            <h3><span id="mobilename" style="color:black"><b>Available Quantity:</b></span></h3>
+                            <h6><span id="mobilename" style="color:black">@m.AvailableQuantity</span></h6>
+
+                            <h3><span id="mobilename" style="color:black"><b>Price:</b></span></h3>
+                            <h6><span id="mobilename" style="color:black">@m.Price Rs</span></h6>
+
+                            @if (@m.AvailableSize != null) {
+                            <h3><span id="mobilename" style="color:black"><b>Available Size:</b></span></h3>
+                            <h4><span id="mobilename" style="color:black">
+                                 <ul>
+                                    @foreach( var size in @m.AvailableSize)
+                                    {
+                                      <li> @size</li>
+                                    }
+                                 </ul>
+                            </span></h4>
+                             }
+                        @if (@m.AvailableColors != null)
+                        {
+                            <h3><span id="mobilename" style="color:black"><b>Available Color:</b></span></h3>
+                            <h4><span id="mobilename" style="color:black">
+                                    <ul>
+                                        @foreach (var color in @m.AvailableColors)
+                                        {
+                                            <li> @color</li>
+                                        }
+                                    </ul>
+                                </span></h4>
+                        }
+                    </div>
+            </div>
+        </div>
+        </div>
+
+    }
+</div>

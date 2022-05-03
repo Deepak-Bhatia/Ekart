@@ -1,0 +1,40 @@
+﻿@using E_Cart.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="@Url.Action("Index", "Home")">Deepak's Ekart</a>
+    </div>
+    <ul class="nav navbar-nav">
+   @if (HttpContextAccessor.HttpContext.Session.getObject("Category") != null)
+   {
+        
+       var MenuMaster = (List<E_Cart.Models.MenuModel>)HttpContextAccessor.HttpContext.Session.GetObjectFromJson<List<MenuModel>>("Category"); ;
+         
+         foreach (var menuItem in MenuMaster)
+         {
+            
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">@menuItem.MenuName<span class="caret"></span></a>
+                  @if (menuItem.SubMenu != null)
+                  {
+                  <ul class="dropdown-menu">
+                     @foreach (var SubMenuList in menuItem.SubMenu)
+                     {
+                         <li><a href="#">@SubMenuList.MenuName</a></li>
+                     }
+                 </ul>
+                 }
+              </li>
+            
+         }
+   }
+
+    </ul>
+
+     <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Logout", "LogOff", "Login")</li>
+    </ul>
+    
+  </div>
+</nav>
