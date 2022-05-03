@@ -9,6 +9,12 @@ Application uses a Tbl_menu Table in Database to configure dynamic navigation bu
 Controller and Action method names can be configured in Database for configurable navigation.
 Application uses tbl_product, tbl_productCategory and tbl_productCompany to store product details.
 
+
+## Future
+* Add functionality to add items to cart
+* Add option to like a product.
+* Add option to provide product feedback
+
 ## Getting Started
 
 To get started with the application you need .NET core and SQL.
